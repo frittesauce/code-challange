@@ -25,6 +25,7 @@ export default function SignIn() {
       .then(async (response) => {
         // Handle success.
         Cookies.set("DO_NOT_SHARE_TOKEN", response.data.jwt);
+        localStorage.setItem("DO_NOT_SHARE_TOKEN", response.data.jwt);
         router.push("/home");
       })
       .catch((error) => {

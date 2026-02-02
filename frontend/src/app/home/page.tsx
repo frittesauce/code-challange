@@ -1,13 +1,9 @@
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
+"use client";
 
-export default async function Home() {
-  const isLoggedIn = (await cookies()).get("DO_NOT_SHARE_TOKEN");
-  return isLoggedIn ? (
+export default function Home() {
+  return (
     <div>
-      <p>you are logged in!</p>
+      <p>home page!</p>
     </div>
-  ) : (
-    redirect("/")
   );
 }
