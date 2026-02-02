@@ -2,16 +2,19 @@
 import Link from "next/link";
 import { toast } from "react-toastify";
 
-
-export default function Home() {
+export default function Hero() {
   return (
-    <div >
+    <div>
       <p>hello!</p>
-      <button onClick={() => {
-        toast("this toast is so cool!")
-      }}>show toast.</button>
+      <button
+        onClick={() => {
+          toast("this toast is so cool!");
+        }}
+      >
+        show toast.
+      </button>
 
-      <Link href="/auth">login</Link>
+      <Link href="/auth/signIn">login</Link>
     </div>
   );
 }
