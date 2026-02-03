@@ -1,17 +1,18 @@
 "use client";
 
-import { fetchEvents } from "@/queries";
+import { fetchEvent } from "@/queries";
+import { EventPageProps } from "@/types/components/events";
 import { useQuery } from "@tanstack/react-query";
-import { useRouter } from "next/router";
+import { use } from "react";
 
-export default function Home() {
-  const router = useRouter();
+export default function EventPage({ params }: EventPageProps) {
+  const eventId = use(params).id;
 
   const {
     status,
     error,
     data: events,
-  } = useQuery({ queryKey: ["events"], queryFn: fetchEvents });
+  } = useQuery({ queryKey: ["events"], queryFn: () => fetchEvent(eventId) });
 
   return (
     <div>

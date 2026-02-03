@@ -1,6 +1,8 @@
 "use client";
 
+import { EventList } from "@/components/ui/events/eventlist";
 import { fetchEvents } from "@/queries";
+import { EventItem } from "@/types/components/events";
 import { useQuery } from "@tanstack/react-query";
 
 export default function Home() {
@@ -8,18 +10,18 @@ export default function Home() {
     status,
     error,
     data: events,
-  } = useQuery({
+  } = useQuery<EventItem[], Error>({
     queryKey: ["events"],
     queryFn: fetchEvents,
   });
-
   if (status == "pending") return <p>loading</p>;
   if (status == "error") return <p>error {JSON.stringify(error)}</p>;
 
+  console.log(events);
   return (
     <div>
       <p>event page!</p>
-      <p>{JSON.stringify(events)}</p>
+      <EventList eventlist={events}></EventList>
     </div>
   );
 }
