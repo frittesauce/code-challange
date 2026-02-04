@@ -7,13 +7,13 @@ export function EventCard({ eventInfo }: EventCardProps) {
   return (
     <div
       className=" flex flex-col m-4 p-4 bg-ctp-mantle rounded-md gap-y-2 align-middle w-[400px] cursor-pointer"
-      onClick={() => redirect(`/home/events/${eventInfo.id}`)}
+      onClick={() => redirect(`/home/events/${eventInfo.documentId}`)}
     >
       <div className="flex w-[350px] h-[256px] self-center align-middle">
         <img
           alt="event"
           src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${eventInfo.image.url}`}
-          className=" max-h-[256px] w-auto max-w-[350px] mr-auto ml-auto"
+          className=" max-h-[256px] w-auto max-w-[350px] mr-auto ml-auto rounded-md"
         />
       </div>
       <div className="rounded-md bg-ctp-crust p-2">
