@@ -5,7 +5,7 @@ import { logout } from "@/app/auth/actions";
 import { useEffect } from "react";
 
 export default function TopBar() {
-  let isLoggedIn = "false";
+  let isLoggedIn = null;
 
   useEffect(() => {
     isLoggedIn = localStorage.getItem("DO_NOT_SHARE_TOKEN");
@@ -37,10 +37,7 @@ export default function TopBar() {
           <>
             <TopBarButton onClick={() => redirect("/home/events")}>
               Events
-            </TopBarButton>{" "}
-            <TopBarButton onClick={() => redirect("/home")}>
-              Dashboard
-            </TopBarButton>{" "}
+            </TopBarButton>
           </>
         ) : (
           <></>

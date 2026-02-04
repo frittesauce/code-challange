@@ -6,6 +6,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function SignIn() {
   const [identifier, setIdentifier] = useState<string>("");
@@ -26,7 +27,7 @@ export default function SignIn() {
         // Handle success.
         Cookies.set("DO_NOT_SHARE_TOKEN", response.data.jwt);
         localStorage.setItem("DO_NOT_SHARE_TOKEN", response.data.jwt);
-        router.push("/home");
+        router.push("/home/events");
       })
       .catch((error) => {
         console.log(error);
@@ -38,22 +39,30 @@ export default function SignIn() {
   }
 
   return (
-    <form onSubmit={handleLogin}>
-      <p>username or email</p>
-      <FormInput
-        setVal={setIdentifier}
-        type="name"
-        required
-        name="username"
-      ></FormInput>
-      <p>password</p>
-      <FormInput
-        setVal={setPassword}
-        type="password"
-        required
-        name="password"
-      ></FormInput>
-      <SubmitButton disabled={loading} text="Sign In"></SubmitButton>
-    </form>
+    <div className="w-full h-[70vh] flex justify-center items-center ">
+      <form
+        onSubmit={handleLogin}
+        className="flex flex-col p-8 bg-ctp-mantle rounded-md gap-y-2"
+      >
+        <p className=" font-semibold text-xl">username or email</p>
+        <FormInput
+          setVal={setIdentifier}
+          type="name"
+          required
+          name="username"
+        ></FormInput>
+        <p className=" font-semibold text-xl">password</p>
+        <FormInput
+          setVal={setPassword}
+          type="password"
+          required
+          name="password"
+        ></FormInput>
+        <SubmitButton disabled={loading} text="Sign In"></SubmitButton>
+        <Link href="/auth/signUp" className=" text-ctp-blue">
+          sing up instead?
+        </Link>
+      </form>
+    </div>
   );
 }

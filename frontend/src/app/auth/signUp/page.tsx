@@ -32,7 +32,7 @@ export default function SignUp() {
         // Handle success.
         Cookies.set("DO_NOT_SHARE_TOKEN", response.data.jwt);
         localStorage.setItem("DO_NOT_SHARE_TOKEN", response.data.jwt);
-        router.push("/home");
+        router.push("/home/events");
       })
       .catch(() => {
         toast.error(`something went wrong whilest making your account!`);
@@ -41,36 +41,41 @@ export default function SignUp() {
   }
 
   return (
-    <form onSubmit={handleRegister}>
-      <p>email</p>
-      <FormInput
-        setVal={setEmail}
-        type="email"
-        required
-        name="email"
-      ></FormInput>
-      <p>username</p>
-      <FormInput
-        setVal={setUsername}
-        type="name"
-        required
-        name="username"
-      ></FormInput>
-      <p>password</p>
-      <FormInput
-        setVal={setPassword}
-        type="password"
-        required
-        name="password"
-      ></FormInput>
-      <p>confirm password</p>
-      <FormInput
-        setVal={setConfirmPassword}
-        type="password"
-        required
-        name="confirmPassword"
-      ></FormInput>
-      <SubmitButton disabled={loading} text="Sign Up"></SubmitButton>
-    </form>
+    <div className="w-full h-[70vh] flex justify-center items-center ">
+      <form
+        onSubmit={handleRegister}
+        className="flex flex-col p-8 bg-ctp-mantle rounded-md gap-y-2"
+      >
+        <p className=" font-semibold text-xl">email</p>
+        <FormInput
+          setVal={setEmail}
+          type="email"
+          required
+          name="email"
+        ></FormInput>
+        <p className=" font-semibold text-xl">username</p>
+        <FormInput
+          setVal={setUsername}
+          type="name"
+          required
+          name="username"
+        ></FormInput>
+        <p className=" font-semibold text-xl">password</p>
+        <FormInput
+          setVal={setPassword}
+          type="password"
+          required
+          name="password"
+        ></FormInput>
+        <p className=" font-semibold text-xl">confirm password</p>
+        <FormInput
+          setVal={setConfirmPassword}
+          type="password"
+          required
+          name="confirmPassword"
+        ></FormInput>
+        <SubmitButton disabled={loading} text="Sign Up"></SubmitButton>
+      </form>
+    </div>
   );
 }

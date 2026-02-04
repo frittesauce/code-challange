@@ -10,11 +10,15 @@ export function EventCard({ eventInfo }: EventCardProps) {
       onClick={() => redirect(`/home/events/${eventInfo.documentId}`)}
     >
       <div className="flex w-[350px] h-[256px] self-center align-middle">
-        <img
-          alt="event"
-          src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${eventInfo.image.url}`}
-          className=" max-h-[256px] w-auto max-w-[350px] mr-auto ml-auto rounded-md"
-        />
+        {eventInfo.image ? (
+          <img
+            alt="event"
+            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${eventInfo.image.url}`}
+            className=" max-h-[256px] w-auto max-w-[350px] mr-auto ml-auto rounded-md"
+          />
+        ) : (
+          <></>
+        )}
       </div>
       <div className="rounded-md bg-ctp-crust p-2">
         <h1 className=" font-semibold text-lg">{eventInfo.title}</h1>
