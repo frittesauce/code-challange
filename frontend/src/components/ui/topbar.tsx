@@ -2,17 +2,22 @@
 import { redirect } from "next/navigation";
 import { TopBarButton } from "./topbarButton";
 import { logout } from "@/app/auth/actions";
+import { useEffect } from "react";
 
 export default function TopBar() {
-  const isLoggedIn = localStorage.getItem("DO_NOT_SHARE_TOKEN");
+  let isLoggedIn = "false";
 
-    async function handleLogout() { 
-        const status = await logout();
-        if (status === "success") {
-            localStorage.removeItem("DO_NOT_SHARE_TOKEN");
-            redirect("/");
-        }
+  useEffect(() => {
+    isLoggedIn = localStorage.getItem("DO_NOT_SHARE_TOKEN");
+  });
+
+  async function handleLogout() {
+    const status = await logout();
+    if (status === "success") {
+      localStorage?.removeItem("DO_NOT_SHARE_TOKEN");
+      redirect("/");
     }
+  }
 
   return (
     <div className="w-full flex items-center relative p-2">
@@ -45,7 +50,9 @@ export default function TopBar() {
         {isLoggedIn ? (
           <TopBarButton onClick={handleLogout}>Logout</TopBarButton>
         ) : (
-          <TopBarButton onClick={() => redirect("/auth/signIn")}>Login</TopBarButton>
+          <TopBarButton onClick={() => redirect("/auth/signIn")}>
+            Login
+          </TopBarButton>
         )}
       </div>
     </div>

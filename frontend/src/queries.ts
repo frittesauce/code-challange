@@ -4,7 +4,6 @@ import { EventItem } from "./types/components/events";
 export async function fetchEvents(): Promise<EventItem[]> {
   const token = localStorage.getItem("DO_NOT_SHARE_TOKEN");
 
-
   if (!token) {
     throw new Error("missing token!");
   }
@@ -16,7 +15,7 @@ export async function fetchEvents(): Promise<EventItem[]> {
     .then((res) => res.data.data);
 }
 
-export async function fetchEvent(id: number): Promise<EventItem[]> {
+export async function fetchEvent(id: number): Promise<EventItem> {
   const token = localStorage.getItem("DO_NOT_SHARE_TOKEN");
 
   if (!token) {
