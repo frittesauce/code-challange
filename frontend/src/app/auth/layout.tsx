@@ -7,5 +7,8 @@ export default async function AuthLayout({
   children: React.ReactNode;
 }>) {
   const isLoggedIn = (await cookies()).get("DO_NOT_SHARE_TOKEN");
-  return !isLoggedIn ? { children } : redirect("/");
+  
+  if (isLoggedIn) return redirect("/home");
+
+  return  (<div>{ children }</div> );
 }
